@@ -1,0 +1,19 @@
+[Unit]
+Description=TeamCity Build Agent
+After=network.target
+
+[Service]
+Type=oneshot
+
+User=teamcity
+Group=teamcity
+ExecStart=/home/teamcity/agent/bin/agent.sh start
+ExecStop=-/home/teamcity/agent/bin/agent.sh stop
+
+# Support agent upgrade as the main process starts a child and exits then
+RemainAfterExit=yes
+# Support agent upgrade as the main process gets SIGTERM during upgrade and that maps to exit code 143
+SuccessExitStatus=0 143
+
+[Install]
+WantedBy=default.target
