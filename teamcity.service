@@ -7,8 +7,8 @@ Type=oneshot
 
 User=teamcity
 Group=teamcity
-ExecStart=/home/teamcity/agent/bin/agent.sh start
-ExecStop=-/home/teamcity/agent/bin/agent.sh stop
+ExecStart=/home/teamcity/tcagent/bin/agent.sh start
+ExecStop=-/home/teamcity/tcagent/bin/agent.sh stop
 
 # Support agent upgrade as the main process starts a child and exits then
 RemainAfterExit=yes
