@@ -77,25 +77,7 @@ chown teamcity:teamcity ../teamcity/tcagent
 rm -rf TeamCity
 
 
-echo '[Unit]
-Description=TeamCity Build Agent
-After=network.target
-
-[Service]
-Type=oneshot
-
-User=teamcity
-Group=teamcity
-ExecStart=/home/teamcity/tcagent/bin/agent.sh start
-ExecStop=-/home/teamcity/tcagent/bin/agent.sh stop
-
-# Support agent upgrade as the main process starts a child and exits then
-RemainAfterExit=yes
-# Support agent upgrade as the main process gets SIGTERM during upgrade and that maps to exit code 143
-SuccessExitStatus=0 143
-
-[Install]
-WantedBy=default.target' | sudo tee -a /etc/systemd/system/teamcity.service
+sudo cp teamcity.service /etc/systemd/system/teamcity.service
 
 sudo systemctl enable teamcity
 sudo systemctl start teamcity
